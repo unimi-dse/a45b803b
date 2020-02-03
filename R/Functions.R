@@ -26,7 +26,7 @@ doublesumplts <- function(x,y){
 
 #print the plots of INFL and GDP from DATA.csv with ggplot
 ggdoubleplt <- function(){
-  DATA <- read.csv('https://raw.githubusercontent.com/unimi-dse/a45b803b/master/DATA.csv')
+  DATA <- read.csv(system.file("extdata", "DATA.csv", package = "TS1"))
   DATA$DATE <- as.Date.factor(DATA$DATE)
   p1 <- ggplot(DATA, aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
     geom_line(color='red', size=0.75) +
