@@ -1,6 +1,6 @@
 #load the dataset from github
 loaddata <- function(){
-  DATA <- read.csv('https://raw.githubusercontent.com/unimi-dse/a45b803b/master/extinst/extdata/DATA.csv')
+  DATA <- read.csv(system.file("extdata", "DATA.csv", package = "TS1"))
   DATA$DATE <- as.Date.factor(DATA$DATE)
   return(DATA)
 }
