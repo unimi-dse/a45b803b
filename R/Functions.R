@@ -1,7 +1,6 @@
 #load the dataset from github
 loaddata <- function(){
-  DATA <- read.csv(system.file("extdata", "DATA.csv", package="TS1"), sep = ',')
-  DATA$DATE <- as.Date.factor(DATA$DATE)
+  DATA <- read.csv(file=system.file("extdata", "DATA.csv", package="TS1"), sep = ',')
   return(DATA)
 }
 
