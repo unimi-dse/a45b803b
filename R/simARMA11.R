@@ -10,4 +10,3 @@ randma11 <- function(x=c(0,1,1), t=sample(100:1000,1), teta=runif(1, min = -1,ma
 randarma111 <- function(x=c(1,1,1), t=sample(100:1000,1), phi=runif(1, min = -1,max=1), teta=runif(1, min = -1,max=1)){
   arima.sim(list(order=x,ar=phi,ma=teta),n=t)
 }
-

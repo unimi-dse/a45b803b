@@ -1,4 +1,6 @@
-DATA <- read.csv('DATA.csv')
+loaddata <- function(){
+  DATA <- read.csv('https://raw.githubusercontent.com/unimi-dse/a45b803b/master/DATA.csv')
+}
 DATA$DATE <- as.Date.factor(DATA$DATE)
 
 GDP <- zoo(DATA$GDP_PERCAPITA, order.by = DATA$DATE)
