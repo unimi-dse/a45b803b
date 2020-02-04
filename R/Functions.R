@@ -6,26 +6,33 @@ loaddata <- function(){
 }
 
 #print 3 graphs of a zoo obj with raw data, acf and pacf
-sumplts <- function(x){
+sumpltsGDP <- function(x=DATA$GDP_PERCAPITA){
   par(mfcol=c(3,1))
-  plot(x, xlab = 'Years', col = 'red', type = 'l')
-  acf(coredata(x), type=c('correlation'), main='ACF', ylab='value')
-  acf(coredata(x), type=c('partial'), main='PACF', ylab='value')
+  plot(x, main = 'US GDP per capita', xlab = 'Years', col = 'red', type = 'l')
+  acf(x, type=c('correlation'), main='ACF', ylab='value')
+  acf(x, type=c('partial'), main='PACF', ylab='value')
 }
 
-#does the same as sumplts, but with two zoo obj
-doublesumplts <- function(x,y){
+sumpltsINFL <- function(x=DATA$INFLATION){
+  par(mfcol=c(3,1))
+  plot(x, main = 'US Inflation', xlab = 'Years', col = 'green', type = 'l')
+  acf(x, type=c('correlation'), main='ACF', ylab='value')
+  acf(x, type=c('partial'), main='PACF', ylab='value')
+}
+
+#does the same as sumplts, but with two series
+doublesumplts <- function(x=DATA$GDP_PERCAPITA,z=DATA$INFLATION, y=DATA$DATE){
   par(mfcol=c(3,2))
-  plot.zoo(x, xlab = 'Years', col = 'red', type = 'l')
-  acf(coredata(x), type=c('correlation'), main='ACF', ylab='value')
-  acf(coredata(x), type=c('partial'), main='PACF', ylab='value')
-  plot(y, xlab = 'Years', col = 'blue',type='l')
-  acf(coredata(y), type=c('correlation'), main='ACF', ylab='value')
-  acf(coredata(y), type=c('partial'), main='PACF', ylab='value')
+  plot(y, x, main = 'GDPpercapita',ylab = 'level', xlab = 'Years', col = 'red', type = 'l')
+  acf(x, type=c('correlation'), main='ACF', ylab='value')
+  acf(x, type=c('partial'), main='PACF', ylab='value')
+  plot(y, z,main = 'Inflation', ylab = '%change', xlab = 'Years', col = 'blue',type='l')
+  acf(z, type=c('correlation'), main='ACF', ylab='value')
+  acf(z, type=c('partial'), main='PACF', ylab='value')
 }
 
 #print the plots of INFL and GDP from DATA.csv with ggplot
-ggdoubleplt <- function(){
+ggdoubleplt <- function(DATA){
   DATA <- read.csv(system.file("extdata", "DATA.csv", package = "TS1"))
   DATA$DATE <- as.Date.factor(DATA$DATE)
   p1 <- ggplot(DATA, aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
@@ -42,7 +49,23 @@ ggdoubleplt <- function(){
 }
 
 #this function returns the diff I0 series.
-I0_serie <- function(x,t){
+I0_serieGDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
+  listoutput <- tseries::adf.test(x)
+  c=0
+  p.val <- listoutput[['p.value']]
+  while (p.val > 0.05 ) {
+    c=c+1
+    x <- diff(x)
+    listoutput <- tseries::adf.test(x)
+    p.val <- listoutput[['p.value']]
+    if (p.val < 0.05 ){
+      x <- zoo(diff(x, k=c),order.by = t)
+      return(x)
+    }
+  }
+}
+
+I0_serieINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
@@ -59,7 +82,24 @@ I0_serie <- function(x,t){
 }
 
 #this function prints the plot of the diff I0 series starting from a numeric vector.
-plot_I0serie <- function(x,t){
+plot_I0GDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
+  listoutput <- tseries::adf.test(x)
+  c=0
+  p.val <- listoutput[['p.value']]
+  while (p.val > 0.05 ) {
+    c=c+1
+    x <- diff(x)
+    listoutput <- tseries::adf.test(x)
+    p.val <- listoutput[['p.value']]
+    if (p.val < 0.05){
+      x <- zoo(diff(x, k=c),order.by = t)
+      par(mfcol=c(1,1))
+      return(plot(x,type = 'l', col='red',xlab = 'Years'))
+    }
+  }
+}
+
+plot_I0INFL <- function(x=DATA$INFLATION,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
@@ -77,7 +117,22 @@ plot_I0serie <- function(x,t){
 }
 
 #returns the integration order of your series
-intorder <- function(x){
+intorderGDP <- function(x=DATA$GDP_PERCAPITA){
+  listoutput <- tseries::adf.test(x)
+  c=0
+  p.val <- listoutput[['p.value']]
+  while (p.val > 0.05 ) {
+    c=c+1
+    x <- diff(x)
+    listoutput <- tseries::adf.test(x)
+    p.val <- listoutput[['p.value']]
+    if (p.val < 0.05){
+      return(c) #order of integration
+    }
+  }
+}
+
+intorderGDP <- function(x=DATA$INFLATION){
   listoutput <- tseries::adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
