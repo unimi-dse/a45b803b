@@ -1,12 +1,16 @@
 Package: TS1
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Plotting and differentiating time series
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Filippo Menegatti
+Maintainer: <filippo.menegatti@studio.unimi.it>
+Description: This package can be used to visualize and compare data frames or time series.    It can also analyize them to find the order of integration and differentiate.
+License: ///
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
+Import: 
+    ggplot2,
+    tseries,
+    gridExtra,
+    zoo
