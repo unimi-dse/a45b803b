@@ -132,7 +132,7 @@ I0_seriesGDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #' @export
 #'
 #' @examples I0INFL <- I0_seriesINFL(x=infl, t=time)
-I0_serieINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
+I0_seriesINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
