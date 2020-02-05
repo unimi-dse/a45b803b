@@ -41,7 +41,7 @@ These functions can be used to return the order of integration of the two time s
 I0_seriesGDP()
 I0_seriesINFL()
 ```
-These functions are used to calculate the order of integration with the `adf.test()` from `tseries` package and then differentiate to obtain the I(0) series.
+These functions are used to calculate the order of integration with the `adf.test()` from `tseries` package and then differentiate to obtain the I(0) series as a zoo object.
 
 ```{r}
 plot_I0GDP()
@@ -55,3 +55,11 @@ randma11()
 randarma111()
 ```
 These three function are used to obtain respectively AR(1), MA(1), ARMA(1) integrated of order 1 series randomly generated with a set which goes from 100 to 1000 observations (also the coefficient/s is/are random).
+
+***Packages needed***
+```{r}
+ggplot2
+gridExtra
+zoo
+tseries
+```
