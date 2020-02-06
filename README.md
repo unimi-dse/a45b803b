@@ -1,7 +1,6 @@
 ---
 title: "TS1 Package in R"
 author: "Filippo Menegatti"
-output: html_document
 ---
 
 ***Description of the package***
