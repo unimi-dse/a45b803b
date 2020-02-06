@@ -12,6 +12,7 @@ loaddata <- function(){
   DATA <- read.csv(system.file("extdata", "DATA.csv", package = "TS1"))
   DATA$DATE <- as.Date.factor(DATA$DATE)
   return(DATA)
+  assign('DATA', DATA, envir = .GlobalEnv)
 }
 
 
