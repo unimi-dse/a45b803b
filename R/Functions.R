@@ -78,6 +78,7 @@ doublesumplts <- function(x=DATA$GDP_PERCAPITA, z=DATA$INFLATION, t=DATA$DATE){
 #'
 #' @return This function gives as output a single window with the plot of the two series of the df, also adding them a tendency line.
 #' @export
+#' @import ggplot2 gridExtra
 #'
 #' @examples seriesplot <- ggdoubleplot(DATA)
 ggdoubleplt <- function(DATA){
@@ -104,10 +105,10 @@ ggdoubleplt <- function(DATA){
 #'
 #' @return This function calculates the order of integration of your time series and gives you as output the differentiated one as a zoo object. By default this function uses the GDP data from 'DATA.csv'.
 #' @export
-#'
+#' @import tseries zoo
 #' @examples I0GDP <- I0_seriesGDP(x=GDP, t=time)
 I0_seriesGDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
-  listoutput <- tseries::adf.test(x)
+  listoutput <- adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
   while (p.val > 0.05 ) {
@@ -130,7 +131,7 @@ I0_seriesGDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #'
 #' @return This function calculates the order of integration of your time series and gives you as output the differentiated one as a zoo object. By default this function uses the Inflation data from 'DATA.csv'.
 #' @export
-#'
+#' @import tseries zoo
 #' @examples I0INFL <- I0_seriesINFL(x=infl, t=time)
 I0_seriesINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
@@ -156,6 +157,7 @@ I0_seriesINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
 #'
 #' @return This function gives as output the plot of the differentiated I(0) series. By default this function uses the GDP data from 'DATA.csv'.
 #' @export
+#' @import tseries zoo
 #'
 #' @examples pI0GDP <- plot_I0GDP(x=GDP, t=time)
 plot_I0GDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
@@ -183,6 +185,7 @@ plot_I0GDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #'
 #' @return This function gives as output the plot of the differentiated I(0) series. By default this function uses the Inflation data from 'DATA.csv'.
 #' @export
+#' @import tseries zoo
 #'
 #' @examples pI0INFL <- plot_I0INFL(x=inflation, t=time)
 plot_I0INFL <- function(x=DATA$INFLATION,t=DATA$DATE){
@@ -209,6 +212,7 @@ plot_I0INFL <- function(x=DATA$INFLATION,t=DATA$DATE){
 #'
 #' @return This function returns the integration order of the series. By default this function uses the GDP data from 'DATA.csv'.
 #' @export
+#' @import tseries zoo
 #'
 #' @examples IO_GDP <- intorderGDP(x=GDP)
 intorderGDP <- function(x=DATA$GDP_PERCAPITA){
@@ -233,6 +237,7 @@ intorderGDP <- function(x=DATA$GDP_PERCAPITA){
 #'
 #' @return This function returns the integration order of the series. By default this function uses the Inflation data from 'DATA.csv'.
 #' @export
+#' @import tseries zoo
 #'
 #' @examples IO_INFL <- intorderINFL(x=inlflation)
 intorderINFL <- function(x=DATA$INFLATION){
