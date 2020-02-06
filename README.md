@@ -1,6 +1,6 @@
 ---
-title: "TS1 Package in R"
-author: "Filippo Menegatti"
+Title: "TS1 Package in R"
+Author: "Filippo Menegatti"
 ---
 
 ***Description of the package***
