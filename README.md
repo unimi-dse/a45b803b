@@ -1,14 +1,12 @@
----
-title: "TS1 Package in R"
-author: "Filippo Menegatti"
-output: html_document
----
+<h1>TS1 Package in R</h1>
 
-***Description of the package***
+<h4>Author: Filippo Menegatti</h4>
+
+<h3>Description of the package</h3>
 
 With the TS1 package it is possible to run a preliminar analysis and visualization of your time series data. It is possible to make graphs of the raw data, ACF and PACF - for one or two series - at the same time. Then you can obtain the order of integration, differentiate the series or plot directly the I(0) series. In addiction with this package it is possible to simulate three kinds of ARMA processes integrated of order 1. Finally, the package contains a default dataset of the US GDP per capita and the US inflation between 1948 and 2019.
 
-***Functions description***
+<h3>Functions description</h3>
 
 ```{r}
 loaddata()
@@ -62,3 +60,6 @@ randma11()
 randarma111()
 ```
 These three function are used to obtain respectively AR(1), MA(1), ARMA(1) integrated of order 1 series randomly generated with a set which goes from 100 to 1000 observations (also the coefficient/s is/are random).
+
+<h4>Packages needed</h4>
+ggplot2, zoo, tseries, gridExtra
