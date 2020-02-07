@@ -16,5 +16,5 @@ This function returns the integration order of the series. By default this funct
 This function is used to calculate the order of integration of the series. By default uses the Inflation data from the default dataframe of the package 'DATA.CSV'.
 }
 \examples{
-IO_INFL <- intorderINFL(x=inlflation)
+IO_INFL <- intorderINFL(x=inflation)
 }

@@ -14,6 +14,23 @@ loaddata <- function(){
   return(DATA)
 }
 
+#' Time series' summary plots
+#'
+#' @description This function is useful to visualize a summary - raw data, ACF and PACF - of your data in one window. WARNING: to visualize it click the icon above the 'refresh topic' one.
+#' @param x The numeric vector of the observations you want to visualize.
+#' @param t The vector of the dates used to index the data.
+#'
+#' @return The function returns a series of three plots: The plot of the raw data, the ACF plot and the PACF plot.
+#' @export
+#'
+#' @examples sumPLOTS <- sumpltsGDP(x=data, t=time)
+sumpltsGDP <- function(x,t){
+  par(mfcol=c(3,1))
+  plot(t, x, main = names(x), xlab = 'Years', col = 'red', type = 'l')
+  acf(x, type=c('correlation'), main='ACF', ylab='value')
+  acf(x, type=c('partial'), main='PACF', ylab='value')
+}
+
 
 #' GDP's summary plots
 #'
@@ -97,6 +114,34 @@ ggdoubleplt <- function(DATA){
   grid.arrange(p1,p2,ncol=1,nrow=2)
 }
 
+#' Differentiate time series
+#'
+#' @description With this function is possible to differentiate a series to obtain the I(0) version.
+#' @param x The numeric vector of the observations you want to visualize.
+#' @param t The vector of the dates used to index the data.
+#'
+#' @return This function calculates the order of integration of your time series and gives you as output the differentiated one as a zoo object.
+#' @export
+#'
+#' @import tseries zoo
+#' @examples I0GDP <- I0_seriesGDP(x=GDP, t=time)
+I0_series <- function(x,t){
+  listoutput <- adf.test(x)
+  c=0
+  p.val <- listoutput[['p.value']]
+  while (p.val > 0.05 ) {
+    c=c+1
+    x <- diff(x)
+    listoutput <- adf.test(x)
+    p.val <- listoutput[['p.value']]
+    if (p.val < 0.05 ){
+      x <- zoo(diff(x, k=c),order.by = t)
+      return(x)
+    }
+  }
+}
+
+
 #' Differentiate time series - GDP
 #'
 #' @description With this function is possible to differentiate a series to obtain the I(0) version. By default uses the GDP data from the default dataframe of the package 'DATA.CSV'.
@@ -134,17 +179,45 @@ I0_seriesGDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #' @import tseries zoo
 #' @examples I0INFL <- I0_seriesINFL(x=infl, t=time)
 I0_seriesINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
-  listoutput <- tseries::adf.test(x)
+  listoutput <- adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
   while (p.val > 0.05 ) {
     c=c+1
     x <- diff(x)
-    listoutput <- tseries::adf.test(x)
+    listoutput <- adf.test(x)
     p.val <- listoutput[['p.value']]
     if (p.val < 0.05 ){
       x <- zoo(diff(x, k=c),order.by = t)
       return(x)
+    }
+  }
+}
+
+#' Plot I(0) series
+#'
+#' @description With this function is possible to visualize the plot of a differentiate I(0) series.
+#' @param x The numeric vector of the observations you want to visualize.
+#' @param t The vector of the dates used to index the data.
+#'
+#' @return This function gives as output the plot of the differentiated I(0) series.
+#' @export
+#' @import tseries zoo
+#'
+#' @examples pI0GDP <- plot_I0GDP(x=GDP, t=time)
+plot_I0 <- function(x,t){
+  listoutput <- adf.test(x)
+  c=0
+  p.val <- listoutput[['p.value']]
+  while (p.val > 0.05 ) {
+    c=c+1
+    x <- diff(x)
+    listoutput <- adf.test(x)
+    p.val <- listoutput[['p.value']]
+    if (p.val < 0.05){
+      x <- zoo(diff(x, k=c),order.by = t)
+      par(mfcol=c(1,1))
+      return(plot(x, main=names(x), type = 'l', col='red',xlab = 'Years'))
     }
   }
 }
@@ -161,13 +234,13 @@ I0_seriesINFL <- function(x=DATA$INFLATION,t=DATA$DATE){
 #'
 #' @examples pI0GDP <- plot_I0GDP(x=GDP, t=time)
 plot_I0GDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
-  listoutput <- tseries::adf.test(x)
+  listoutput <- adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
   while (p.val > 0.05 ) {
     c=c+1
     x <- diff(x)
-    listoutput <- tseries::adf.test(x)
+    listoutput <- adf.test(x)
     p.val <- listoutput[['p.value']]
     if (p.val < 0.05){
       x <- zoo(diff(x, k=c),order.by = t)
@@ -189,13 +262,13 @@ plot_I0GDP <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #'
 #' @examples pI0INFL <- plot_I0INFL(x=inflation, t=time)
 plot_I0INFL <- function(x=DATA$INFLATION,t=DATA$DATE){
-  listoutput <- tseries::adf.test(x)
+  listoutput <- adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
   while (p.val > 0.05 ) {
     c=c+1
     x <- diff(x)
-    listoutput <- tseries::adf.test(x)
+    listoutput <- adf.test(x)
     p.val <- listoutput[['p.value']]
     if (p.val < 0.05){
       x <- zoo(diff(x, k=c),order.by = t)
@@ -205,6 +278,31 @@ plot_I0INFL <- function(x=DATA$INFLATION,t=DATA$DATE){
   }
 }
 
+#' Integration order
+#'
+#' @description This function is used to calculate the order of integration of the series.
+#' @param x The numeric vector of the observations you want to visualize.
+#'
+#' @return This function returns the integration order of the series.
+#' @export
+#' @import tseries
+#' @examples IO_GDP <- intorderGDP(x=GDP)
+intorder <- function(x){
+  listoutput <- adf.test(x)
+  c=0
+  p.val <- listoutput[['p.value']]
+  while (p.val > 0.05 ) {
+    c=c+1
+    x <- diff(x)
+    listoutput <- adf.test(x)
+    p.val <- listoutput[['p.value']]
+    if (p.val < 0.05){
+      return(c)
+    }
+  }
+}
+
+
 #' Integration order - GDP
 #'
 #' @description This function is used to calculate the order of integration of the series. By default uses the GDP data from the default dataframe of the package 'DATA.CSV'.
@@ -212,20 +310,20 @@ plot_I0INFL <- function(x=DATA$INFLATION,t=DATA$DATE){
 #'
 #' @return This function returns the integration order of the series. By default this function uses the GDP data from 'DATA.csv'.
 #' @export
-#' @import tseries zoo
+#' @import tseries
 #'
 #' @examples IO_GDP <- intorderGDP(x=GDP)
 intorderGDP <- function(x=DATA$GDP_PERCAPITA){
-  listoutput <- tseries::adf.test(x)
+  listoutput <- adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
   while (p.val > 0.05 ) {
     c=c+1
     x <- diff(x)
-    listoutput <- tseries::adf.test(x)
+    listoutput <- adf.test(x)
     p.val <- listoutput[['p.value']]
     if (p.val < 0.05){
-      return(c) #order of integration
+      return(c)
     }
   }
 }
@@ -237,17 +335,17 @@ intorderGDP <- function(x=DATA$GDP_PERCAPITA){
 #'
 #' @return This function returns the integration order of the series. By default this function uses the Inflation data from 'DATA.csv'.
 #' @export
-#' @import tseries zoo
+#' @import tseries
 #'
-#' @examples IO_INFL <- intorderINFL(x=inlflation)
+#' @examples IO_INFL <- intorderINFL(x=inflation)
 intorderINFL <- function(x=DATA$INFLATION){
-  listoutput <- tseries::adf.test(x)
+  listoutput <- adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
   while (p.val > 0.05 ) {
     c=c+1
     x <- diff(x)
-    listoutput <- tseries::adf.test(x)
+    listoutput <- adf.test(x)
     p.val <- listoutput[['p.value']]
     if (p.val < 0.05){
       return(c) #order of integration

@@ -2,8 +2,10 @@
 % Please edit documentation in R/Functions.R
 \name{sumpltsGDP}
 \alias{sumpltsGDP}
-\title{GDP's summary plots}
+\title{Time series' summary plots}
 \usage{
+sumpltsGDP(x = DATA$GDP_PERCAPITA, t = DATA$DATE)
+
 sumpltsGDP(x = DATA$GDP_PERCAPITA, t = DATA$DATE)
 }
 \arguments{
@@ -12,11 +14,16 @@ sumpltsGDP(x = DATA$GDP_PERCAPITA, t = DATA$DATE)
 \item{t}{The vector of the dates used to index the data.}
 }
 \value{
+The function returns a series of three plots: The plot of the raw data, the ACF plot and the PACF plot.
+
 The function returns a series of three plots: The plot of the raw data, the ACF plot and the PACF plot. As default it returns the plot of US GDP data.
 }
 \description{
 This function is useful to visualize a summary - raw data, ACF and PACF - of your data in one window. WARNING: to visualize it click the icon above the 'refresh topic' one.
+
+This function is useful to visualize a summary - raw data, ACF and PACF - of your data in one window. WARNING: to visualize it click the icon above the 'refresh topic' one.
 }
 \examples{
+sumPLOTS <- sumpltsGDP(x=data, t=time)
 sumPLOTS <- sumpltsGDP(x=data, t=time)
 }

@@ -1,6 +1,7 @@
 ---
-Title: "TS1 Package in R"
-Author: "Filippo Menegatti"
+title: "TS1 Package in R"
+author: "Filippo Menegatti"
+output: html_document
 ---
 
 ***Description of the package***
@@ -20,10 +21,11 @@ ggdoubleplt(DATA)
 This function can be used to visualize the plot of the two series using the package `ggplot2`. It also combines the graphs putting them in a single window with `gridExtra`.
 
 ```{r}
+sumplts()
 sumpltsGDP()
 sumpltsINFL()
 ```
-These two functions are used to display three different graphs in one single window: raw data, ACF and PACF. ***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
+These functions are used to display three different graphs in one single window: raw data, ACF and PACF. ***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
 
 ```{r}
 doublesumplts()
@@ -31,18 +33,21 @@ doublesumplts()
 This function is used like the previous two, but permits to visualize the two series in the same window to easily compare them. ***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
 
 ```{r}
+intorder()
 intorderGDP()
 intorderINFL()
 ```
 These functions can be used to return the order of integration of the two time series with the `adf.test()` from `tseries` package.
 
 ```{r}
+I0_series()
 I0_seriesGDP()
 I0_seriesINFL()
 ```
 These functions are used to calculate the order of integration with the `adf.test()` from `tseries` package and then differentiate to obtain the I(0) series.
 
 ```{r}
+plot_I0()
 plot_I0GDP()
 plot_I0INFL()
 ```
