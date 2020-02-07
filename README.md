@@ -11,7 +11,8 @@ With the TS1 package it is possible to run a preliminar analysis and visualizati
 ```{r}
 loaddata()
 ```
-This particular function is used to load the dataframe containing GDP and Inflation data from our default dataset with the column DATE converted in class Date. 
+This particular function is used to load the dataframe containing GDP and Inflation data from our default dataset with the column DATE converted in class Date.
+
 ***WARNING*** the first thing you have to do to make the visualization functions work as needed is to use this function and store it as DATA: `DATA <- loaddata()`.
 
 ```{r}
@@ -24,13 +25,15 @@ sumplts()
 sumpltsGDP()
 sumpltsINFL()
 ```
-These functions are used to display three different graphs in one single window: raw data, ACF and PACF. 
+These functions are used to display three different graphs in one single window: raw data, ACF and PACF.
+
 ***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
 
 ```{r}
 doublesumplts()
 ```
-This function is used like the previous two, but permits to visualize the two series in the same window to easily compare them. 
+This function is used like the previous two, but permits to visualize the two series in the same window to easily compare them.
+
 ***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
 
 ```{r}
