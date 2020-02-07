@@ -24,7 +24,7 @@ loaddata <- function(){
 #' @export
 #'
 #' @examples sumPLOTS <- sumpltsGDP(x=data, t=time)
-sumpltsGDP <- function(x,t){
+sumplts <- function(x,t){
   par(mfcol=c(3,1))
   plot(t, x, main = names(x), xlab = 'Years', col = 'red', type = 'l')
   acf(x, type=c('correlation'), main='ACF', ylab='value')
