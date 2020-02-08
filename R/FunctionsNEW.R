@@ -33,14 +33,14 @@ MAINPLOTS <- function(){
 #' @description This is a default function used to visualize the raw data, acf and pacf of the GDP data.
 #' @return This function returns the raw data, the acf and the pacf.
 #' @export
-#'
+#' @import ggfortify
 ggsumpltsGDP <- function(){
   p1 <- ggplot2::ggplot(DATA, ggplot2::aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
     ggplot2::geom_line(color='red', size=0.75) +
     ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
     ggplot2::labs(title = 'USA GDP PER CAPITA', x='Years', y='Level')
-  acf1 <- ggplot2::autoplot(ggfortify::acf(DATA$GDP_PERCAPITA, plot = FALSE))
-  pacf1 <- ggplot2::autoplot(ggfortify::pacf(DATA$GDP_PERCAPITA, plot = FALSE))
+  acf1 <- ggplot2::autoplot(acf(DATA$GDP_PERCAPITA, plot = FALSE))
+  pacf1 <- ggplot2::autoplot(pacf(DATA$GDP_PERCAPITA, plot = FALSE))
   gridExtra::grid.arrange(p1, acf1, pacf1 ,ncol=1,nrow=3)
 }
 
@@ -50,14 +50,14 @@ ggsumpltsGDP <- function(){
 #' @description This is a default function used to visualize the raw data, acf and pacf of the GDP data.
 #' @return This function returns the raw data, the acf and the pacf.
 #' @export
-#'
+#' @import ggfortify
 ggsumpltsINFL <- function(){
   p1 <- ggplot2::ggplot(DATA, ggplot2::aes(x=as.Date.factor(DATA$DATE), y=DATA$INFLATION))+
     ggplot2::geom_line(color='darkgreen', size=0.75) +
     ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
     ggplot2::labs(title = 'USA INFLATION', x='Years', y='% change')
-  acf1 <- ggplot2::autoplot(ggfortify::acf(DATA$INFLATION, plot = FALSE))
-  pacf1 <- ggplot2::autoplot(ggfortify::pacf(DATA$INFLATION, plot = FALSE))
+  acf1 <- ggplot2::autoplot(acf(DATA$INFLATION, plot = FALSE))
+  pacf1 <- ggplot2::autoplot(pacf(DATA$INFLATION, plot = FALSE))
   gridExtra::grid.arrange(p1, acf1, pacf1, ncol=1,nrow=3)
 }
 
