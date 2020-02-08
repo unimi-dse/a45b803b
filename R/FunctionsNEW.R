@@ -35,12 +35,12 @@ MAINPLOTS <- function(){
 #' @export
 #'
 ggsumpltsGDP <- function(){
-  p1 <- ggplot2::ggplot(DATA, aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
-    geom_line(color='red', size=0.75) +
-    scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
-    labs(title = 'USA GDP PER CAPITA', x='Years', y='Level')
-  acf1 <- ggfortify::autoplot(acf(DATA$GDP_PERCAPITA, plot = FALSE))
-  pacf1 <- ggfortify::autoplot(pacf(DATA$GDP_PERCAPITA, plot = FALSE))
+  p1 <- ggplot2::ggplot(DATA, ggplot2::aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
+    ggplot2::geom_line(color='red', size=0.75) +
+    ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
+    ggplot2::labs(title = 'USA GDP PER CAPITA', x='Years', y='Level')
+  acf1 <- ggfortify::autoplot(ggfortify::acf(DATA$GDP_PERCAPITA, plot = FALSE))
+  pacf1 <- ggfortify::autoplot(ggfortify::pacf(DATA$GDP_PERCAPITA, plot = FALSE))
   gridExtra::grid.arrange(p1, acf1, pacf1,ncol=1,nrow=3)
 }
 
@@ -52,12 +52,12 @@ ggsumpltsGDP <- function(){
 #' @export
 #'
 ggsumpltsINFL <- function(){
-  p1 <- ggplot2::ggplot(DATA, aes(x=as.Date.factor(DATA$DATE), y=DATA$INFLATION))+
-    geom_line(color='darkgreen', size=0.75) +
-    scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
-    labs(title = 'USA INFLATION', x='Years', y='% change')
-  acf1 <- ggfortify::autoplot(acf(DATA$INFLATION, plot = FALSE))
-  pacf1 <- ggfortify::autoplot(pacf(DATA$INFLATION, plot = FALSE))
+  p1 <- ggplot2::ggplot(DATA, ggplot2::aes(x=as.Date.factor(DATA$DATE), y=DATA$INFLATION))+
+    ggplot2::geom_line(color='darkgreen', size=0.75) +
+    ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
+    ggplot2::labs(title = 'USA INFLATION', x='Years', y='% change')
+  acf1 <- ggfortify::autoplot(ggfortify::acf(DATA$INFLATION, plot = FALSE))
+  pacf1 <- ggfortify::autoplot(ggfortify::pacf(DATA$INFLATION, plot = FALSE))
   gridExtra::grid.arrange(p1, acf1, pacf1, ncol=1,nrow=3)
 }
 
@@ -110,16 +110,16 @@ doublesumplts <- function(x=DATA$GDP_PERCAPITA, z=DATA$INFLATION, t=DATA$DATE){
 #'
 #' @examples seriesplot <- ggdoubleplot()
 ggdoubleplt <- function(){
-  p1 <- ggplot2::ggplot(DATA, aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
-    geom_line(color='red', size=0.75) +
-    scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
-    geom_smooth(size=0.5, method = 'loess', formula = 'y ~ x')+
-    labs(title = 'USA GDP PER CAPITA', x='Years', y='Level')
-  p2 <- ggplot2::ggplot(DATA, aes(x=as.Date.factor(DATA$DATE), y=DATA$INFLATION))+
-    geom_line(color='darkgreen', size=0.75) +
-    scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
-    geom_smooth(size=0.5, method = 'loess', formula = 'y ~ x', color='purple')+
-    labs(title = 'USA INFLATION', x='Years', y='% change from y ago')
+  p1 <- ggplot2::ggplot(DATA, ggplot2::aes(x=as.Date.factor(DATA$DATE), y=DATA$GDP_PERCAPITA))+
+    ggplot2::geom_line(color='red', size=0.75) +
+    ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
+    ggplot2::geom_smooth(size=0.5, method = 'loess', formula = 'y ~ x')+
+    ggplot2::labs(title = 'USA GDP PER CAPITA', x='Years', y='Level')
+  p2 <- ggplot2::ggplot(DATA, ggplot2::aes(x=as.Date.factor(DATA$DATE), y=DATA$INFLATION))+
+    ggplot2::geom_line(color='darkgreen', size=0.75) +
+    ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
+    ggplot2::geom_smooth(size=0.5, method = 'loess', formula = 'y ~ x', color='purple')+
+    ggplot2::labs(title = 'USA INFLATION', x='Years', y='% change from y ago')
   gridExtra::grid.arrange(p1,p2,ncol=1,nrow=2)
 }
 
