@@ -32,14 +32,16 @@ With these two default functions is possible to visualize the raw data, acf, pac
 ```{r}
 sumplts()
 ```
-This function is used to display three different graphs in one single window: raw data, ACF and PACF. 
-***IMPORTANT*** To use it without errors is important to enlarge the plot window by clicking the button above the 'Refresh topic' arrow.
+<p>This function is used to display three different graphs in one single window: raw data, ACF and PACF. <br>
+
+***IMPORTANT*** To use it without errors is important to enlarge the plot window by clicking the button above the 'Refresh topic' arrow.</p>
 
 ```{r}
 doublesumplts()
 ```
-This function is used like the previous one, but permits to visualize the two series in the same window to easily compare them. 
-***IMPORTANT*** To use it without errors is important to enlarge the plot window by clicking the button above the 'Refresh topic' arrow.
+<p>This function is used like the previous one, but permits to visualize the two series in the same window to easily compare them.<br>
+  
+***IMPORTANT*** To use it without errors is important to enlarge the plot window by clicking the button above the 'Refresh topic' arrow.</p>
 
 ```{r}
 intorder()
