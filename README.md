@@ -19,7 +19,7 @@ MAINPLOTS()
 With this function you can upload the dataset and visualize all the main plots of the package.
 
 ```{r}
-ggdoubleplt(DATA)
+ggdoubleplt()
 ```
 This function can be used to visualize the plot of the two series using the package `ggplot2`. It also combines the graphs putting them in a single window with `gridExtra`.
 
@@ -32,14 +32,14 @@ With these two default functions is possible to visualize the raw data, acf, pac
 ```{r}
 sumplts()
 ```
-These functions are used to display three different graphs in one single window: raw data, ACF and PACF. 
-***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
+This function is used to display three different graphs in one single window: raw data, ACF and PACF. 
+***IMPORTANT*** To use it without errors is important to enlarge the plot window by clicking the button above the 'Refresh topic' arrow.
 
 ```{r}
 doublesumplts()
 ```
-This function is used like the previous two, but permits to visualize the two series in the same window to easily compare them. 
-***IMPORTANT*** To use them without errors it is important to enlarge the plot window clicking the button above the 'Refresh topic' arrow.
+This function is used like the previous one, but permits to visualize the two series in the same window to easily compare them. 
+***IMPORTANT*** To use it without errors is important to enlarge the plot window by clicking the button above the 'Refresh topic' arrow.
 
 ```{r}
 intorder()
