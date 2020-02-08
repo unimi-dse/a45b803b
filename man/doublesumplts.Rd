@@ -14,11 +14,11 @@ doublesumplts(x = DATA$GDP_PERCAPITA, z = DATA$INFLATION, t = DATA$DATE)
 \item{t}{The vector of the dates used to index the data.}
 }
 \value{
-The function works creating two columns of graphs by which you can compare two series.
+The function works creating two columns of graphs by which you can compare two series. By default the function runs the data contained in the package.
 }
 \description{
 This function is useful to visualize a summary - raw data, ACF and PACF - of your two series in one window. WARNING: to visualize it click the icon above the 'refresh topic' one.
 }
 \examples{
-twoseriesplot <- doublesumplts(x=GDP, z=INFL, t=time)
+##do not run this    twoseriesplot <- doublesumplts(x=GDP, z=INFL, t=time)
 }

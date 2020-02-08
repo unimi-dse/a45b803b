@@ -18,5 +18,5 @@ This function calculates the order of integration of your time series and gives 
 With this function is possible to differentiate a series to obtain the I(0) version.
 }
 \examples{
-I0GDP <- I0_seriesGDP(x=GDP, t=time)
+##do not run this    I0GDP <- I0_seriesGDP(x=GDP, t=time)
 }

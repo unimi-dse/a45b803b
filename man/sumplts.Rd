@@ -18,5 +18,5 @@ The function returns a series of three plots: The plot of the raw data, the ACF 
 This function is useful to visualize a summary - raw data, ACF and PACF - of your data in one window. WARNING: to visualize it click the icon above the 'refresh topic' one.
 }
 \examples{
-sumPLOTS <- sumpltsGDP(x=data, t=time)
+##The function has no default but this example works with the packege's dataset    sumPLOTS <- sumpltsGDP(x=DATA$INFLATION, t=DATA$DATE)
 }
