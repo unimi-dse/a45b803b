@@ -71,7 +71,7 @@ ggsumpltsINFL <- function(){
 #' @return The function returns a series of three plots: The plot of the raw data, the ACF plot and the PACF plot.
 #' @export
 #'
-#' @examples sumPLOTS <- sumpltsGDP(x=data, t=time)
+#' @examples ##The function has no default but this example works with the packege's dataset    sumPLOTS <- sumpltsGDP(x=DATA$INFLATION, t=DATA$DATE)
 sumplts <- function(x,t){
   par(mfcol=c(3,1))
   plot(t, x, main = names(x), xlab = 'Years', col = 'red', type = 'l')
@@ -86,10 +86,10 @@ sumplts <- function(x,t){
 #' @param z The numeric vector of the other series you want to visualize.
 #' @param t The vector of the dates used to index the data.
 #'
-#' @return The function works creating two columns of graphs by which you can compare two series.
+#' @return The function works creating two columns of graphs by which you can compare two series. By default the function runs the data contained in the package.
 #' @export
 #'
-#' @examples twoseriesplot <- doublesumplts(x=GDP, z=INFL, t=time)
+#' @examples ##do not run this    twoseriesplot <- doublesumplts(x=GDP, z=INFL, t=time)
 doublesumplts <- function(x=DATA$GDP_PERCAPITA, z=DATA$INFLATION, t=DATA$DATE){
   par(mfcol=c(3,2))
   plot(t, x, main = 'GDPpercapita',ylab = 'level', xlab = 'Years', col = 'red', type = 'l')
@@ -132,7 +132,7 @@ ggdoubleplt <- function(){
 #' @return This function calculates the order of integration of your time series and gives you as output the differentiated one as a zoo object.
 #' @export
 #'
-#' @examples I0GDP <- I0_seriesGDP(x=GDP, t=time)
+#' @examples ##do not run this    I0GDP <- I0_seriesGDP(x=GDP, t=time)
 I0_series <- function(x,t){
   listoutput <- tseries::adf.test(x)
   c=0
