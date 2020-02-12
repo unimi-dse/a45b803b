@@ -19,12 +19,12 @@ loaddata <- function(){
 #' @export
 #'
 MAINPLOTS <- function(){
-  loaddata()
-  ggdoublesumplt()
+  DATA <- loaddata()
+  ggdoublesumplts()
   ggsumplts(main = 'GDP per capita')
   ggsumplts(r=DATA,s=DATA$INFLATION,t=DATA$DATE, main='Inflation')
   plot_I0()
-  plot_I0(x=DATA$INFLATION,t=DATA$DATE)
+  plot_I0(x=DATA$INFLATION, t=DATA$DATE)
 }
 
 #' Plot raw data + tendency line
@@ -111,7 +111,7 @@ ggdoublesumplts <- function(r=DATA,s=DATA$GDP_PERCAPITA,t1=DATA$DATE, main1='Ts1
 #' @return This function calculates the order of integration of your time series and gives you as output the differentiated one as a zoo object.
 #' @export
 #'
-#' @examples ##You can try this    I0INFL <- I0_seriesGDP(x=DATE$INFLATION, t=DATA$DATE)
+#' @examples ##You can try this    I0INFL <- I0_series(x=DATA$INFLATION, t=DATA$DATE)    I0GDP <- I0_series(x=DATA$GDP_PERCAPITA, t=DATA$DATE)
 I0_series <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
   c=0
