@@ -72,7 +72,7 @@ ggsumplts <- function(r=DATA,s=DATA$GDP_PERCAPITA,t=DATA$DATE, main='Time series
 
 #' Double summary plots
 #'
-#' @description This function works like 'ggsumplts' but permits to visualize two time series at the same time.
+#' @description This function works like 'ggsumplts' but permits to visualize two time series at the same time. By default it uses the two time series of the standard dataset
 #' @param r The dataframe used.
 #' @param s The series you want to visualize in x-axe
 #' @param t1 The dates you want to use to index your series.
@@ -111,7 +111,7 @@ ggdoublesumplts <- function(r=DATA,s=DATA$GDP_PERCAPITA,t1=DATA$DATE, main1='Ts1
 #' @return This function calculates the order of integration of your time series and gives you as output the differentiated one as a zoo object.
 #' @export
 #'
-#' @examples ##You can try this    I0INFL <- I0_series(x=DATA$INFLATION, t=DATA$DATE)    I0GDP <- I0_series(x=DATA$GDP_PERCAPITA, t=DATA$DATE)
+#' @examples ##You can try this    I0INFL <- I0_series(x=DATA$INFLATION, t=DATA$DATE)
 I0_series <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
   c=0
@@ -137,7 +137,7 @@ I0_series <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #' @return This function gives as output the plot of the differentiated I(0) series.
 #' @export
 #'
-#' @examples ## Do not run this    pltI0GDP <- plot_I0(x=DATA$GDP_PERCAPITA, t=DATA$DATE)
+#' @examples ## Do not run this    pltI0INFL <- plot_I0(x=DATA$INFLATION, t=DATA$DATE)
 plot_I0 <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
   listoutput <- tseries::adf.test(x)
   c=0
@@ -150,7 +150,7 @@ plot_I0 <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
     if (p.val < 0.05){
       x <- zoo::zoo(diff(x, k=c),order.by = t)
       par(mfcol=c(1,1))
-      return(plot.zoo(x, main=names(x), type = 'l', col='red',xlab = 'Years'))
+      return(zoo::plot.zoo(x, main=names(x), type = 'l', col='red',xlab = 'Years'))
     }
   }
 }

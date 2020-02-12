@@ -18,5 +18,5 @@ This function calculates the order of integration of your time series and gives 
 With this function is possible to differentiate a series to obtain the I(0) version. By default it uses the GDP observation from the default dataset.
 }
 \examples{
-##You can try this    I0INFL <- I0_series(x=DATA$INFLATION, t=DATA$DATE)    I0GDP <- I0_series(x=DATA$GDP_PERCAPITA, t=DATA$DATE)
+##You can try this    I0INFL <- I0_series(x=DATA$INFLATION, t=DATA$DATE)
 }

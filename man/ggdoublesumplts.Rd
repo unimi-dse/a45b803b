@@ -36,5 +36,5 @@ ggdoublesumplts(
 This function returns the summary plots - raw data, ACF, PCF - of two time series.
 }
 \description{
-This function works like 'ggsumplts' but permits to visualize two time series at the same time.
+This function works like 'ggsumplts' but permits to visualize two time series at the same time. By default it uses the two time series of the standard dataset
 }

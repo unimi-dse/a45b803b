@@ -18,5 +18,5 @@ This function gives as output the plot of the differentiated I(0) series.
 With this function is possible to visualize the plot of a differentiate I(0) series. By default it uses the GDP data from the default dataset of the package.
 }
 \examples{
-## Do not run this    pltI0GDP <- plot_I0(x=DATA$GDP_PERCAPITA, t=DATA$DATE)
+## Do not run this    pltI0INFL <- plot_I0(x=DATA$INFLATION, t=DATA$DATE)
 }
