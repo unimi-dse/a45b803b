@@ -6,7 +6,7 @@ ____
 
 <h3>Description of the package</h3>
 
-With the TS1 package it is possible to run a preliminar analysis and visualization of your time series data. It is possible to make graphs of the raw data, ACF and PACF - for one or two series - at the same time. Then you can obtain the order of integration, differentiate the series or plot directly the I(0) series. In addiction with this package it is possible to simulate three kinds of ARMA processes integrated of order 1. Finally, the package contains a default dataset of the US GDP per capita and the US inflation between 1948 and 2019.
+With the TS1 package it is possible to run a preliminar analysis and visualization of your time series data. It is possible to make graphs of the raw data, ACF and PACF - for one or two series - at the same time. Then you can obtain the order of integration, differentiate the series or plot directly the I(0) series. Finally, the package contains a default dataset of the US GDP per capita and the US inflation between 1948 and 2019.
 
 ____
 
@@ -15,7 +15,7 @@ ____
 ```{r}
 loaddata()
 ```
-This particular function is used to load and save the dataframe containing GDP and Inflation data from our default dataset with the column DATE converted in class Date.
+This particular function is used to print the dataframe containing GDP and Inflation data from our default dataset with the column DATE converted in class Date.
 
 ____
 
