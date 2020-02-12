@@ -22,7 +22,7 @@ ____
 ```{r}
 MAINPLOTS()
 ```
-With this function you can return the dataset and visualize the main plots of the package with the data given by default.
+With this function you can visualize the main plots of the package with the data given by default.
 
 ____
 
