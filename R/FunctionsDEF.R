@@ -19,12 +19,11 @@ loaddata <- function(){
 #' @export
 #'
 MAINPLOTS <- function(){
-  DATA <- loaddata()
   ggdoublesumplts()
   ggsumplts(main = 'GDP per capita')
   ggsumplts(r=DATA,s=DATA$INFLATION,t=DATA$DATE, main='Inflation')
   plot_I0()
-  plot_I0(x=DATA$INFLATION, t=DATA$DATE)
+  plot_I0(x=DATA$INFLATION, t=DATA$DATE, title = 'Diff inflation')
 }
 
 #' Plot raw data + tendency line
@@ -60,7 +59,7 @@ ggdoubleplt <- function () {
 #' @import ggfortify
 #' @examples ## You can try this    pltsINFL <- ggsumplts(r=DATA, s=DATA$INFLATION, t=DATA$DATE, main='INFLATION')
 #'
-ggsumplts <- function(r=DATA,s=DATA$GDP_PERCAPITA,t=DATA$DATE, main='Time series'){
+ggsumplts <- function(r=DATA,s=DATA$GDP_PERCAPITA,t=DATA$DATE, main='GDP per capita'){
   p1 <- ggplot2::ggplot(r, ggplot2::aes(x=as.Date.factor(t), y=s))+
     ggplot2::geom_line(color='red', size=0.75) +
     ggplot2::scale_x_date(date_breaks = "8 years", date_labels = "%Y")+
@@ -137,8 +136,8 @@ I0_series <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #' @return This function gives as output the plot of the differentiated I(0) series.
 #' @export
 #'
-#' @examples ## Do not run this    pltI0INFL <- plot_I0(x=DATA$INFLATION, t=DATA$DATE)
-plot_I0 <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
+#' @examples ## Do not run this    pltI0INFL <- plot_I0(x=DATA$INFLATION, t=DATA$DATE, title='Diff inflation')
+plot_I0 <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE, title='Diff GDP per capita'){
   listoutput <- tseries::adf.test(x)
   c=0
   p.val <- listoutput[['p.value']]
@@ -150,7 +149,7 @@ plot_I0 <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
     if (p.val < 0.05){
       x <- zoo::zoo(diff(x, k=c),order.by = t)
       par(mfcol=c(1,1))
-      return(zoo::plot.zoo(x, main=names(x), type = 'l', col='red',xlab = 'Years'))
+      return(zoo::plot.zoo(x, main= title, type = 'l', col='red',xlab = 'Years'))
     }
   }
 }

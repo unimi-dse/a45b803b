@@ -8,7 +8,7 @@ ggsumplts(
   r = DATA,
   s = DATA$GDP_PERCAPITA,
   t = DATA$DATE,
-  main = "Time series"
+  main = "GDP per capita"
 )
 }
 \arguments{
