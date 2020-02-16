@@ -136,7 +136,7 @@ I0_series <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE){
 #' @return This function gives as output the plot of the differentiated I(0) series.
 #' @export
 #'
-#' @examples ## Do not run this    pltI0INFL <- plot_I0(x=DATA$INFLATION, t=DATA$DATE, title='Diff inflation')
+#' @examples ## You can try this    pltI0INFL <- plot_I0(x=DATA$INFLATION, t=DATA$DATE, title='Diff inflation')
 plot_I0 <- function(x=DATA$GDP_PERCAPITA,t=DATA$DATE, title='Diff GDP per capita'){
   listoutput <- tseries::adf.test(x)
   c=0
