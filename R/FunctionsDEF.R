@@ -19,6 +19,7 @@ loaddata <- function(){
 #' @export
 #'
 MAINPLOTS <- function(){
+  ggdoubleplt()
   ggdoublesumplts()
   ggsumplts(main = 'GDP per capita')
   ggsumplts(r=DATA,s=DATA$INFLATION,t=DATA$DATE, main='Inflation')
